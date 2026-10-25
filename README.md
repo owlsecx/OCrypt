@@ -18,13 +18,18 @@
 
 ## 📌 Overview
 
-Modern Crypto Tool
+OCrypt provides modern symmetric encryption and public-key sealing for files and text. Passwords are stretched with PBKDF2-SHA256, and seal mode wraps a random AES-256 data key with RSA-OAEP so a public key can protect arbitrary-size content. Keys and exports live under a dedicated data directory rather than the working folder.
 
 ---
 
 ## ✨ Features
 
-- Modern encryption and public-key seal
+- Password-based encryption with PBKDF2-SHA256 key stretching
+- AES-256-GCM authenticated encryption for local secrets
+- RSA-OAEP seal/open for text and files of any size
+- Dedicated key and export storage under ~/.local/share/ocrypt
+- CLI seal/open paths for automation alongside interactive use
+- Clear separation of public seal versus private open operations
 
 ---
 
@@ -38,7 +43,10 @@ Modern Crypto Tool
 ## 🚀 Usage
 
 ```bash
-./OCrypt
+./OCrypt --seal-text --public pubkey.pem --text 'secret message'
+./OCrypt --open-text --private privkey.pem --text '<sealed-blob>'
+./OCrypt --seal-file --public pubkey.pem --in report.pdf --out report.seal
+./OCrypt --help
 ```
 
 ---
